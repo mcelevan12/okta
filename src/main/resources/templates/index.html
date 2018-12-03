@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home page</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+       <h1>Employees</h1>
+       <table>
+            <tr>
+                <th>Username</th>
+            </tr>
+
+            <tr th:each="employee : ${employees}">
+                <td> 
+                    <a th:text="${employee.username}" th:href="'/employee/' + ${employee.username}"></a>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

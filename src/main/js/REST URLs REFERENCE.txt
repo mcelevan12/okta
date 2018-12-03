@@ -1,0 +1,45 @@
+spring.data.rest.basePath=/api
+==
+
+===MY TEAM===
+Get request to /api/myteam/[username]
+
+===SEARCH===
+Post request to /api/searchemployee/
+will post the search parameters to that URL
+Expect back a JSON list of Employees
+
+===MY PROFILE=== or ===CLICK ON SEARCH RESULT===
+Get request to /api/employee/[username]
+will get that username
+expect back a JSON of that employee
+
+===Edit USERNAME ID===
+Post request to /api/myprofile/[username]
+will send ALL profile fields
+
+
+===MY PROGRAMS===
+Get request to /api/myprograms/[username]
+expect JSON program, accesslevel
+
+
+==REQUEST ACCESS===
+Get request to /api/programlist/[username]
+expect JSON
+
+POST request to /api/requestaccess/[username]
+Will post Program name, access level, comment, username
+
+==VIEW ACTIVE REQUESTS===
+Get request to /api/activerequests/[username]
+expect JSON with usernames, programs,access level, comment
+
+POST request to /api/activerequests/[requestId]
+will post accept or deny
+
+
+
+
+
+
