@@ -21,7 +21,11 @@ import com.capping.service.IValidProgramService;
 import com.capping.service.IActiveRequestService;
 import com.capping.service.IManageService;
 import com.capping.bean.ActiveRequest;
+<<<<<<< HEAD
 //import java.security.Principal;
+=======
+import java.security.Principal;
+>>>>>>> 72619377cbfbb1fd32d9aad4782ad5d4ab74962c
 import java.util.List;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -39,9 +43,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
+<<<<<<< HEAD
 
 @RestController
 //@EnableOAuth2Sso
+=======
+@RestController
+@EnableOAuth2Sso
+>>>>>>> 72619377cbfbb1fd32d9aad4782ad5d4ab74962c
 @SpringBootApplication
 public class Application {
 
@@ -64,7 +73,7 @@ public class Application {
     public String getUsername(Principal principal) {
         return principal.getName();
     }*/
-
+	
     @GetMapping("/api/employee/{username}")
     public @ResponseBody ResponseEntity<String> getEmployeeProfilePage(@PathVariable String username){
         PersonalInformation personalInformation = (PersonalInformation) personalInformationService.find(username);
@@ -74,6 +83,7 @@ public class Application {
     @GetMapping("/api/myteam/{username}")
     public @ResponseBody ResponseEntity<String> getMyTeam(@PathVariable String username){//Principal principal) {
         Manage manager = (Manage) manageService.findByManagedUsername(username);//principal.getName());
+
         List<Manage> managed = manageService.findByManagerUsername(manager.managerUsername());
         List<PersonalInformation> teammates = new LinkedList();
         teammates.add((PersonalInformation) personalInformationService.find(manager.managerUsername()));
@@ -81,6 +91,26 @@ public class Application {
             teammates.add(personalInformationService.find(managedUsername));
         }
         return new ResponseEntity<String>(teammates.toString(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/advancedsearchemployee/")
+    public @ResponseBody ResponseEntity<String> getAdvancedSearchedEmployees(@RequestParam(value="city") String city,
+            @RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName,
+            @RequestParam(value="lastName") String lastName, @RequestParam(value="jobTitle") String jobTitle,
+            @RequestParam(value="workPhoneNumber") String workPhoneNumber) {
+        List<PersonalInformation> personalInformationList = (List<PersonalInformation>) personalInformationService.findAll();
+        List<PersonalInformation> validPersonalInformationList = new ArrayList<>();
+        boolean flag = true;
+        for(PersonalInformation p : personalInformationList) {
+            if(!p.username.equals("") && !p.username.equals(username)) { flag = false; }
+            if(!p.city.equals("") && !p.city.equals(city)) { flag = false; }
+            if(!p.firstName.equals("") && !p.firstName.equals(firstName)) { flag = false; }
+            if(!p.lastName.equals("") && !p.lastName.equals(lastName)) { flag = false; }
+            if(!p.jobTitle.equals("") && !p.jobTitle.contains(jobTitle)) { flag = false; }
+            if(!p.workPhoneNumber.equals("") && !p.workPhoneNumber.equals(workPhoneNumber)) { flag = false; }
+            if(flag) {validPersonalInformationList.add(p);
+       }
+       return new ResponseEntity<String>(validPersonalInformationList.toString(), HttpStatus.OK);
     }
 
     @GetMapping("/api/searchemployee/{plusSeparatedParameters}")
@@ -95,12 +125,14 @@ public class Application {
 
     @GetMapping("/api/myprograms/{username}")
     public @ResponseBody ResponseEntity<String> getEmployeePrograms(@PathVariable String username) {
+
         List<EmployeeProgram> employeeProgramList = (List<EmployeeProgram>) employeeProgramService.findByUsername(username);
         return new ResponseEntity<String>(employeeProgramList.toString(),HttpStatus.OK);
     }
 
     @GetMapping("/api/programlist/{username}")
     public @ResponseBody ResponseEntity<String> getValidProgramList(@PathVariable String username) {
+
         List<ValidProgram> validPrograms = (List<ValidProgram>) validProgramService.findAll();
         List<EmployeeProgram> employeeProgramList = (List<EmployeeProgram>) employeeProgramService.findByUsername(username);
         return new ResponseEntity<String>(validPrograms.stream()
@@ -115,8 +147,10 @@ public class Application {
         return activeRequestService.save(activeRequest);
     }
 
+	
     @GetMapping("/api/activerequests/{username}")
     public @ResponseBody ResponseEntity<String> getActiveRequests(@PathVariable String username) {
+
         List<Manage> managed = manageService.findByManagerUsername(username);
         List<ActiveRequest> activeRequests = new LinkedList<>();
         for(String managedUsername : managed.stream().map(manage -> manage.managedUsername()).collect(Collectors.toList())) {
@@ -124,4 +158,9 @@ public class Application {
         }
         return new ResponseEntity<String>(activeRequests.toString(), HttpStatus.OK);
     }
+
+	/*
+    public String username(Principal principal) {
+        return principal.getName().split("@")[0];
+    }*/
 }

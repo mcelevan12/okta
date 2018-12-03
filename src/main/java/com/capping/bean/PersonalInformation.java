@@ -73,7 +73,7 @@ public class PersonalInformation {
   }
 
   public JSONObject json() {
-    return new JSONObject()
+    return new JSONObject().put("PersonalInformation", new JSONObject()
         .put("username", username)
         .put("jobTitle", jobTitle)
         .put("firstName", firstName)
@@ -82,7 +82,7 @@ public class PersonalInformation {
         .put("city", city)
         .put("country", country)
         .put("biography", biography)
-        .put("profilePicture", profilePicture());
+        .put("profilePicture", profilePicture()));
   }
 }
 
