@@ -54,7 +54,7 @@ class MyTeam extends React.Component {
   }
 
   get(){
-		client({method: 'GET', path:'/acme/api/myteam/' + this.props.loginuser}).done(response => {
+		client({method: 'GET', path:'/api/myteam/' + this.props.loginuser}).done(response => {
       console.log(response.entity)
       this.setState({employeelist: response.entity
       });

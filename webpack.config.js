@@ -7,8 +7,14 @@ module.exports = {
     mode: 'development',
     output: {
         path: __dirname,
-        filename: './src/main/resources/static/built/bundle.js'
-    },
+        filename: './src/main/resources/static/bundle.js'
+    }, 
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './src/main/resources/static/',
+    port: 8080
+  },  
     module: {
         rules: [
             {

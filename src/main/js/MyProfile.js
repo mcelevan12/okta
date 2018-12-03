@@ -81,7 +81,7 @@ class MyProfile extends React.Component {
             biography: '',}
 
   getrequest() {
-    client({method: 'GET', path:'/acme/api/employee/' + this.props.loginuser}).done(response => {
+    client({method: 'GET', path:'/api/employee/' + this.props.loginuser}).done(response => {
       console.log(response.entity)
       this.setState({lastname: response.entity.PersonalInformation.lastName,
                     firstname: response.entity.PersonalInformation.firstName,

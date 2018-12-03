@@ -21,7 +21,7 @@ import com.capping.service.IValidProgramService;
 import com.capping.service.IActiveRequestService;
 import com.capping.service.IManageService;
 import com.capping.bean.ActiveRequest;
-import java.security.Principal;
+//import java.security.Principal;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -39,8 +39,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
+
 @RestController
-@EnableOAuth2Sso
+//@EnableOAuth2Sso
 @SpringBootApplication
 public class OktaApplication {
 
@@ -59,10 +60,10 @@ public class OktaApplication {
         SpringApplication.run(OktaApplication.class, args);
     }
 
-    @GetMapping("/api/username")
+    /*@GetMapping("/api/username")
     public String getUsername(Principal principal) {
         return principal.getName();
-    }
+    }*/
 
     @GetMapping("/api/employee/{username}")
     public @ResponseBody ResponseEntity<String> getEmployeeProfilePage(@PathVariable String username){
@@ -70,10 +71,9 @@ public class OktaApplication {
         return new ResponseEntity<String>(personalInformation.toString(),HttpStatus.OK);
     }
 
-    @GetMapping("/api/myteam/")
-    public @ResponseBody ResponseEntity<String> getMyTeam(Principal principal) {
-        System.out.println(principal.getName());
-        Manage manager = (Manage) manageService.findByManagedUsername(principal.getName());
+    @GetMapping("/api/myteam/{username}")
+    public @ResponseBody ResponseEntity<String> getMyTeam(@PathVariable String username){//Principal principal) {
+        Manage manager = (Manage) manageService.findByManagedUsername(username);//principal.getName());
         List<Manage> managed = manageService.findByManagerUsername(manager.managerUsername());
         List<PersonalInformation> teammates = new LinkedList();
         teammates.add((PersonalInformation) personalInformationService.find(manager.managerUsername()));
