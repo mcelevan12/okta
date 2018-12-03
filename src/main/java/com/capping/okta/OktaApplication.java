@@ -55,6 +55,10 @@ public class OktaApplication {
     @Autowired
     IManageService manageService;
 
+    public static void main(String[] args) {
+        SpringApplication.run(OktaApplication.class, args);
+    }
+
     @GetMapping("/api/username")
     public String getUsername(Principal principal) {
         return principal.getName();
