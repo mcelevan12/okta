@@ -89,7 +89,7 @@ searchfunction = () => {
   console.log('searchfunction this.state.searchterms' + this.state.searchterms);
   console.log('searchfunctionsearchParameterss' + searchParameters);
   if (searchParameters != ''){
-    client({method: 'GET', path: '/acme/api/searchemployee/' + searchParameters}).done(response => {
+    client({method: 'GET', path: '/api/searchemployee/' + searchParameters}).done(response => {
           console.log(response.entity);
           this.setState({employeelist: response.entity});
         });

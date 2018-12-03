@@ -34,7 +34,7 @@ function ProgramListItem(props) {
     return (
 
             <ListItem dense button onClick={callbackWithProps}>
-            {/* src={"/acme/images/" + props.username + ".png"} */}
+            {/* src={"/images/" + props.username + ".png"} */}
               <Avatar alt={props.programname} style={{margin: 10, color: '#000', backgroundColor: amber[500],}}>
                 <CategoryIcon />
               </Avatar>
