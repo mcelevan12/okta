@@ -21,11 +21,6 @@ import com.capping.service.IValidProgramService;
 import com.capping.service.IActiveRequestService;
 import com.capping.service.IManageService;
 import com.capping.bean.ActiveRequest;
-<<<<<<< HEAD
-//import java.security.Principal;
-=======
-import java.security.Principal;
->>>>>>> 72619377cbfbb1fd32d9aad4782ad5d4ab74962c
 import java.util.List;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -43,14 +38,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
-<<<<<<< HEAD
-
 @RestController
 //@EnableOAuth2Sso
-=======
-@RestController
-@EnableOAuth2Sso
->>>>>>> 72619377cbfbb1fd32d9aad4782ad5d4ab74962c
 @SpringBootApplication
 public class Application {
 
