@@ -1,5 +1,15 @@
 package com.capping.okta;
 
+import com.capping.bean.PersonalInformation;
+import com.capping.bean.EmployeeProgram;
+import com.capping.bean.ActiveRequest;
+import com.capping.bean.ValidProgram;
+import com.capping.bean.Manage;
+import com.capping.service.IPersonalInformationService;
+import com.capping.service.IActiveRequestService;
+import com.capping.service.IEmployeeProgramService;
+import com.capping.service.IManageService;
+import com.capping.service.IValidProgramService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
