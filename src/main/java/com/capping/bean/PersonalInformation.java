@@ -75,7 +75,7 @@ public class PersonalInformation {
   public JSONObject json() {
     return new JSONObject()
         .put("username", username)
-        .put("jobTotle", jobTitle)
+        .put("jobTitle", jobTitle)
         .put("firstName", firstName)
         .put("lastName", lastName)
         .put("workPhoneNumber", workPhoneNumber)
