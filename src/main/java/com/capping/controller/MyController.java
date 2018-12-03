@@ -45,16 +45,6 @@ public class MyController {
     @Autowired
     IManageService manageService;
 
-/*    @RequestMapping("/")
-    public String index() {
-      return "index";
-    }
-
-    @GetMapping("/login")
-    public String login(){
-      return "login";
-    }*/
-
     @GetMapping("/api/username")
     public String getUsername(Principal principal) {
         return principal.getName();
