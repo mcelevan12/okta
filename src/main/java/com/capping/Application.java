@@ -88,7 +88,7 @@ public class Application {
             @RequestParam(value="lastName") String lastName, @RequestParam(value="jobTitle") String jobTitle,
             @RequestParam(value="workPhoneNumber") String workPhoneNumber) {
         List<PersonalInformation> personalInformationList = (List<PersonalInformation>) personalInformationService.findAll();
-        List<PersonalInformation> validPersonalInformationList = new ArrayList<>();
+        List<PersonalInformation> validPersonalInformationList = new LinkedList<>();
         boolean flag = true;
         for(PersonalInformation p : personalInformationList) {
             if(!p.username.equals("") && !p.username.equals(username)) { flag = false; }
