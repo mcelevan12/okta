@@ -27,8 +27,7 @@ public class ActiveRequest implements Serializable {
   public Date lastUpdated;
   public String comment;
 
-  public ActiveRequest() {
-  }
+  public ActiveRequest() {}
 
   public ActiveRequest(ActiveRequestId activeRequestId, Date lastUpdated, String comment) {
     this.activeRequestId = activeRequestId;
