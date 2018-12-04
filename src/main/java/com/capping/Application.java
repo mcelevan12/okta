@@ -56,7 +56,7 @@ public class Application {
     IManageService manageService;
 
     public static void main(String[] args) {
-        SpringApplication.run(OktaApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @GetMapping("/api/username")
