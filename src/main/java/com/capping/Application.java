@@ -64,6 +64,11 @@ public class Application {
         return principal.getName();
     }
 
+    @PostMapping("/api/changeProfile")
+    public Employee changeProfile(@RequestBody Employee employee) {
+        return employeeService.save(employee);
+    }
+
     @GetMapping("/api/employee/{username}")
     public @ResponseBody ResponseEntity<String> getEmployeeProfilePage(@PathVariable String username) {
         PersonalInformation personalInformation = (PersonalInformation) personalInformationService.find(username);
