@@ -65,7 +65,7 @@ public class Application {
     }
 
     @GetMapping("/api/employee/{username}")
-    public @ResponseBody ResponseEntity<String> getEmployeeProfilePage(@PathVariable String username){
+    public @ResponseBody ResponseEntity<String> getEmployeeProfilePage(@PathVariable String username) {
         PersonalInformation personalInformation = (PersonalInformation) personalInformationService.find(username);
         return new ResponseEntity<String>(personalInformation.toString(),HttpStatus.OK);
     }
@@ -97,7 +97,7 @@ public class Application {
             if(!p.lastName.equals("") && !p.lastName.equals(lastName)) { flag = false; }
             if(!p.jobTitle.equals("") && !p.jobTitle.contains(jobTitle)) { flag = false; }
             if(!p.workPhoneNumber.equals("") && !p.workPhoneNumber.equals(workPhoneNumber)) { flag = false; }
-            if(flag) {validPersonalInformationList.add(p);
+            if(flag) {validPersonalInformationList.add(p); }
        }
        return new ResponseEntity<String>(validPersonalInformationList.toString(), HttpStatus.OK);
     }
