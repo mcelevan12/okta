@@ -17,5 +17,10 @@ public class EmployeeService implements IEmployeeService {
   public Employee find(String username) {
     return (Employee) repository.findOne(username);
   }
+
+  @Override
+  public Employee save(Employee employee) {
+    return (Employee) repository.save(emplyee);
+  }
 }
 
