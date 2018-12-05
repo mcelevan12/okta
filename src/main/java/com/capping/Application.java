@@ -2,6 +2,7 @@ package com.capping;
 
 import com.capping.bean.PersonalInformation;
 import com.capping.bean.EmployeeProgram;
+import com.capping.bean.Employee;
 import com.capping.bean.ActiveRequest;
 import com.capping.bean.ValidProgram;
 import com.capping.bean.Manage;
@@ -66,6 +67,7 @@ public class Application {
 
     @PostMapping("/api/changeProfile")
     public Employee changeProfile(@RequestBody Employee employee) {
+        
         return employeeService.save(employee);
     }
 
