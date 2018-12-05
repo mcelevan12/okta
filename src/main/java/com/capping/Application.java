@@ -123,11 +123,16 @@ public class Application {
                 HttpStatus.OK);
     }
 
-    @GetMapping("/api/myprograms/")
+    @GetMapping("/api/myprograms")
     public @ResponseBody ResponseEntity<String> getEmployeePrograms(Principal principal) {
         String username = username(principal);
         List<EmployeeProgram> employeeProgramList = (List<EmployeeProgram>) employeeProgramService.findByUsername(username);
         return new ResponseEntity<String>(employeeProgramList.toString(),HttpStatus.OK);
+    }
+
+    @GetMapping("/api2/myprograms")
+    public @ResponseBody ResponseEntity<String> api2EP(Principal p) {
+        return getEmployeePrograms(p);
     }
 
     @GetMapping("/api/programlist")
