@@ -122,6 +122,7 @@ public class Application {
         List<PersonalInformation> validPersonalInformationList = new LinkedList<>();
         boolean flag = true;
         for(PersonalInformation p : personalInformationList) {
+            flag = true;
             if(!username.equals("") && !p.username.equals(username)) { flag = false; }
             if(!city.equals("") && !p.city.equals(city)) { flag = false; }
             if(!firstName.equals("") && !p.firstName.equals(firstName)) { flag = false; }
