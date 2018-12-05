@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
     entry: ['whatwg-fetch', './src/main/js/app.js'],
     devtool: 'sourcemaps',
-    cache: true,
+    cache: false,
     mode: 'development',
     output: {
         path: __dirname,

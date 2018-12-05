@@ -26,13 +26,12 @@ import ThumbsUpDownIcon from '@material-ui/icons/ThumbsUpDown';
 import Backspace from '@material-ui/icons/Backspace';
 
 import client from './client';
-import MyTeam from './MyTeam';
+import myTeam from './myTeam';
 import SearchTabs from './SearchTabs';
 import SearchPage from './SearchPage';
 import Profile from './Profile';
 import MyProfile from './MyProfile';
 import EmployeeList from './EmployeeList';
-import Programs from './Programs';
 import EditProfile from './EditProfile';
 import MyPrograms from './MyPrograms';
 import RequestAccess from './RequestAccess';
@@ -247,7 +246,7 @@ render() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {this.state.maindisplay === 'Search' && <SearchTabs loginuser={this.props.loginuser} callbackFromParent={this.profileCallback}/>
-        }{this.state.maindisplay === 'My Team' && <MyTeam loginuser={this.props.loginuser} callbackFromParent={this.profileCallback}/>
+        }{this.state.maindisplay === 'My Team' && <myTeam loginuser={this.props.loginuser} callbackFromParent={this.profileCallback}/>
         }{this.state.maindisplay === 'My Profile' && <MyProfile loginuser={this.props.loginuser} callbackFromParent={this.editProfileCallback}/>
         }{this.state.maindisplay === 'My Programs' && <MyPrograms loginuser={this.props.loginuser} callbackFromParent={this.programCallback}/>
         }{this.state.maindisplay === 'Edit Profile' && <EditProfile loginuser={this.props.loginuser} 

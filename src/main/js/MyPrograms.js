@@ -7,10 +7,11 @@ import ProgramList from './ProgramList';
 class MyPrograms extends React.Component {
 
   state = { programlist: []
+    
   }
 
   get(){
-		client({method: 'GET', path:'/acme/api/myprograms/' + this.props.loginuser}).done(response => {
+		client({method: 'GET', path:'/api/myprograms/'}).done(response => {
       console.log(response.entity)
       this.setState({programlist: response.entity
       });

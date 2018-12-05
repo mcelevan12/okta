@@ -64,11 +64,11 @@ class ProgramList extends React.Component {
           ///programlist/rko
           this.props.programlist.map(value => (
           <ProgramListItem 
-                key={value.EmployeeProgram.username + value.EmployeeProgram.programId + value.EmployeeProgram.accessLevel} 
-                username={value.EmployeeProgram.username} 
-                programid={value.EmployeeProgram.programId} 
-                programname={value.EmployeeProgram.programName} 
-                accesslevel={value.EmployeeProgram.accessLevel}
+                key={value.employeeProgramId} 
+                username={value.employeeProgramId.username} 
+                programid={value.employeeProgramId.programId} 
+                programname={value.employeeProgramId.programName} 
+                accesslevel={value.employeeProgramId.accessLevel}
                 callbackFromParent={this.props.callbackFromParent}
                 />
         )
