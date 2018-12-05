@@ -83,8 +83,10 @@ public class Application {
 
     @GetMapping("/api/myteam")
     public @ResponseBody ResponseEntity<String> getMyTeam(Principal principal) {
-        Manage manager = (Manage) manageService.findByManagedUsername(principal.getName());
-        List<Manage> managed = manageService.findByManagerUsername(manager.managerUsername());
+        Manage manager = (Manage) manageService.findByManagedUsername(username(principal));
+        List<Manage> managed;
+        if(manager == null) { managed = manageService.findByManagerUsername(username(principal)); }
+        else { managed = manageService.findByManagerUsername(manager.managerUsername()); }
         List<PersonalInformation> teammates = new LinkedList();
         teammates.add((PersonalInformation) personalInformationService.find(manager.managerUsername()));
         for(String managedUsername : managed.stream().map(manage -> manage.managedUsername()).collect(Collectors.toList())) {
