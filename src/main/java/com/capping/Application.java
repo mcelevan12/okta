@@ -126,6 +126,7 @@ public class Application {
     @GetMapping("/api/myprograms/")
     public @ResponseBody ResponseEntity<String> getEmployeePrograms(Principal principal) {
         String username = username(principal);
+        System.out.println("Username:" + username);
         List<EmployeeProgram> employeeProgramList = (List<EmployeeProgram>) employeeProgramService.findByUsername(username);
         return new ResponseEntity<String>(employeeProgramList.toString(),HttpStatus.OK);
     }
