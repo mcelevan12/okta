@@ -9,6 +9,7 @@ import com.capping.bean.Manage;
 import com.capping.service.IPersonalInformationService;
 import com.capping.service.IActiveRequestService;
 import com.capping.service.IEmployeeProgramService;
+import com.capping.service.IEmployeeService;
 import com.capping.service.IManageService;
 import com.capping.service.IValidProgramService;
 import org.springframework.boot.SpringApplication;
@@ -50,6 +51,8 @@ public class Application {
     @Autowired
     IEmployeeProgramService employeeProgramService;
     @Autowired
+    IEmployeeService employeeService;
+    @Autowired
     IValidProgramService validProgramService;
     @Autowired
     IActiveRequestService activeRequestService;
@@ -67,7 +70,7 @@ public class Application {
 
     @PostMapping("/api/changeProfile")
     public Employee changeProfile(@RequestBody Employee employee) {
-        
+        employeeService.findByUsername(employee.username);
         return employeeService.save(employee);
     }
 

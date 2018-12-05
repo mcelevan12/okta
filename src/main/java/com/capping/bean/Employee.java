@@ -21,18 +21,22 @@ public class Employee {
   public String workPhoneNumber;
   public String biography;
   public String password;
+  public int jobId;
+  public int officeId;
 
   public Employee() {
   }
 
   public Employee(String username, String firstName, String lastName, String workPhoneNumber,
-      String biography, String password) {
+      String biography, String password, int jobId, int officeId) {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.workPhoneNumber = workPhoneNumber;
     this.biography = biography;
     this.password = password;
+    this.jobId = jobId;
+    this.officeId = officeId;
   }
 
   public boolean isManager() {
@@ -41,7 +45,7 @@ public class Employee {
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, firstName, lastName, workPhoneNumber, biography, password);
+    return Objects.hash(username, firstName, lastName, workPhoneNumber, biography, password, jobId, officeId);
   }
 
   @Override
@@ -49,12 +53,15 @@ public class Employee {
     if(this == o) { return true; }
     if(!(o instanceof Employee)) { return false; }
     Employee e = (Employee) o;
-    return Objects.equals(username, e.username) && Objects.equals(firstName, e.firstName) && Objects.equals(lastName, e.lastName)
-        && Objects.equals(workPhoneNumber, e.workPhoneNumber) && Objects.equals(biography, e.biography) && Objects.equals(password, e.password);
+    return jobId == e.jobId && officeId == e.officeId && Objects.equals(username, e.username) && Objects.equals(firstName, e.firstName)
+        && Objects.equals(lastName, e.lastName) && Objects.equals(workPhoneNumber, e.workPhoneNumber) && Objects.equals(biography, e.biography)
+        && Objects.equals(password, e.password);
   }
 
   public JSONObject json() {
     return new JSONObject()
+        .put("officeId", officeId)
+        .put("jobId", jobId)
         .put("username", username)
         .put("firstName", firstName)
         .put("lastName", lastName)
