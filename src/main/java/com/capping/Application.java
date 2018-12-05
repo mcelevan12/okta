@@ -81,7 +81,7 @@ public class Application {
         return new ResponseEntity<String>(personalInformation.toString(),HttpStatus.OK);
     }
 
-    @GetMapping("/api/myteam/")
+    @GetMapping("/api/myteam")
     public @ResponseBody ResponseEntity<String> getMyTeam(Principal principal) {
         Manage manager = (Manage) manageService.findByManagedUsername(principal.getName());
         List<Manage> managed = manageService.findByManagerUsername(manager.managerUsername());
@@ -93,7 +93,7 @@ public class Application {
         return new ResponseEntity<String>(teammates.toString(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/advancedsearchemployee/")
+    @GetMapping("/api/advancedsearchemployee")
     public @ResponseBody ResponseEntity<String> getAdvancedSearchedEmployees(@RequestParam(value="city") String city,
             @RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName,
             @RequestParam(value="lastName") String lastName, @RequestParam(value="jobTitle") String jobTitle,
@@ -123,7 +123,7 @@ public class Application {
                 HttpStatus.OK);
     }
 
-    @GetMapping("/api/myprograms/")
+    @GetMapping("/api/myprograms")
     public @ResponseBody ResponseEntity<String> getEmployeePrograms(Principal principal) {
         String username = username(principal);
         System.out.println("Username:" + username);
@@ -148,7 +148,7 @@ public class Application {
         return activeRequestService.save(activeRequest);
     }
 
-    @GetMapping("/api/activerequests/")
+    @GetMapping("/api/activerequests")
     public @ResponseBody ResponseEntity<String> getActiveRequests(Principal principal) {
         String username = username(principal);
         List<Manage> managed = manageService.findByManagerUsername(username);
