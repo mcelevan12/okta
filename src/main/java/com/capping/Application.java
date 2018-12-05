@@ -69,6 +69,18 @@ public class Application {
         return username(principal);
     }
 
+    @GetMapping("/api/changeProfile")
+    public Employee changeProfile(Principal principal, @RequestParam(value="workPhoneNumber") String workPhoneNumber,
+            @RequestParam(value="biography") String biography, @RequestParam(value="firstName") firstName,
+            @RequestParam(value="lastName") lastName) {
+        Employee old = (Employee) employeeService.find(username(principal));
+        old.firstName = firstName;
+        old.lastName = lastName;
+        old.workPhoneNumber = workPhoneNumber;
+        old.biography = biography;
+        return employeeService.save(old);
+    }
+
     @PostMapping("/api/changeProfile")
     public Employee changeProfile(@RequestBody PersonalInformation personalInformation) {
         Employee old = (Employee) employeeService.find(personalInformation.username);
@@ -120,8 +132,8 @@ public class Application {
        return new ResponseEntity<String>(validPersonalInformationList.toString(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/searchemployee/{plusSeparatedParameters}")
-    public @ResponseBody ResponseEntity<String> getSearchedEmployees(@PathVariable("plusSeperatedParameters") String plusSeperatedParameters) {
+    @GetMapping("/api/searchemployee/{pSP}")
+    public @ResponseBody ResponseEntity<String> getSearchedEmployees(@PathVariable("pSP") String plusSeperatedParameters) {
         List<PersonalInformation> personalInformationList = (List<PersonalInformation>) personalInformationService.findAll();
         String[] searchParameters = plusSeperatedParameters.split("+");
         return new ResponseEntity<String>(personalInformationList.stream()
@@ -148,6 +160,12 @@ public class Application {
                 .toString(), HttpStatus.OK);
     }
 
+    @GetMapping("/api/requestaccess/")
+    public ActiveRequest newAccessRequest(@RequestParam(value="username") String username, @RequestParam(value="programId") int programId
+            @RequestParam(value="accessLevel") String accessLevel, @RequestParam(value="status") String status,
+            @RequestParam(value="modifiedBy") String modifiedBy, @RequestParam(value="comment") String comment) {
+        return activeRequestService.save(new ActiveRequest(new ActiveRequest.ActiveRequestId(username, programId, accessLevel, status, modifiedBy), new Date(),
+            comment));
 
     @PostMapping("/api/requestaccess/")
     public ActiveRequest newAccessRequest(@RequestBody ActiveRequest activeRequest) {
