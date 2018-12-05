@@ -88,7 +88,7 @@ public class Application {
         List<PersonalInformation> teammates = new LinkedList();
         if(manager == null) {
             managed = manageService.findByManagerUsername(username(principal));
-            teammates.add((PersonalInformation) personalInformationService.find(username(principal));
+            teammates.add((PersonalInformation) personalInformationService.find(username(principal)));
         } else {
             managed = manageService.findByManagerUsername(manager.managerUsername());
             teammates.add((PersonalInformation) personalInformationService.find(manager.managerUsername()));
