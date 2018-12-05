@@ -69,8 +69,9 @@ public class Application {
     }
 
     @PostMapping("/api/changeProfile")
-    public Employee changeProfile(@RequestBody Employee employee) {
-        employeeService.findByUsername(employee.username);
+    public Employee changeProfile(@RequestBody PersonalInformation personalInformation) {
+        Employee old = (Employee)employeeService.find(employee.username);
+        old.updateValues(personalInformation);
         return employeeService.save(employee);
     }
 

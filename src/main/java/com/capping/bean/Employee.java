@@ -39,6 +39,13 @@ public class Employee {
     this.officeId = officeId;
   }
 
+  public void updateValues(PersonalInformation personalInformation) {
+    this.biography = personalInformation.biography;
+    this.workPhoneNumber = personalInformation.workPhoneNumber;
+    this.firstName = personalInformation.firstName;
+    this.lastName = personalInformation.lastName;
+  }
+
   public boolean isManager() {
     return false;
   }
