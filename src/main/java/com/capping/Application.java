@@ -64,26 +64,10 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-	/**@RequestMapping(value = "/")
-	public String home() {
-		System.out.println("HomeController: Passing through...");
-		return "index.html";
-	}*/
-
-    
-    // public JSONObject getusernamejson(Principal principal) {
-    //     return new JSONObject()
-    //         .put("username", principal);
-    // }
-
     @GetMapping("/api/username")
     public String getUsername(Principal principal) {
         return username(principal);
     }
-    // public String getUsername(Principal principal) {
-    //         String principalpass = ((getusernamejson(principal)).toString());
-    //     return new ResponseEntity<String>(principalpass.toString(),HttpStatus.OK);
-    // }
 
     @PostMapping("/api/changeProfile")
     public Employee changeProfile(@RequestBody PersonalInformation personalInformation) {
@@ -137,7 +121,7 @@ public class Application {
     }
 
     @GetMapping("/api/searchemployee/{plusSeparatedParameters}")
-    public @ResponseBody ResponseEntity<String> getSearchedEmployees(@PathVariable String plusSeperatedParameters) {
+    public @ResponseBody ResponseEntity<String> getSearchedEmployees(@PathVariable("plusSeperatedParameters") String plusSeperatedParameters) {
         List<PersonalInformation> personalInformationList = (List<PersonalInformation>) personalInformationService.findAll();
         String[] searchParameters = plusSeperatedParameters.split("+");
         return new ResponseEntity<String>(personalInformationList.stream()
