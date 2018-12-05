@@ -84,9 +84,15 @@ public class Application {
     @GetMapping("/api/myteam")
     public @ResponseBody ResponseEntity<String> getMyTeam(Principal principal) {
         Manage manager = (Manage) manageService.findByManagedUsername(principal.getName());
-        List<Manage> managed = manageService.findByManagerUsername(manager.managerUsername());
+        List<Manage> managed;
         List<PersonalInformation> teammates = new LinkedList();
-        teammates.add((PersonalInformation) personalInformationService.find(manager.managerUsername()));
+        if(manager == null) {
+            managed = manageService.findByManagerUsername(username(principal));
+            teammates.add((PersonalInformation) personalInformationService.find(username(principal));
+        } else {
+            managed = manageService.findByManagerUsername(manager.managerUsername());
+            teammates.add((PersonalInformation) personalInformationService.find(manager.managerUsername()));
+        }
         for(String managedUsername : managed.stream().map(manage -> manage.managedUsername()).collect(Collectors.toList())) {
             teammates.add(personalInformationService.find(managedUsername));
         }
@@ -130,10 +136,10 @@ public class Application {
         return new ResponseEntity<String>(employeeProgramList.toString(),HttpStatus.OK);
     }
 
-    @GetMapping("/api2/myprograms")
+/*    @GetMapping("/api2/myprograms")
     public @ResponseBody ResponseEntity<String> api2EP(Principal p) {
         return getEmployeePrograms(p);
-    }
+    }*/
 
     @GetMapping("/api/programlist")
     public @ResponseBody ResponseEntity<String> getValidProgramList(Principal principal) {
