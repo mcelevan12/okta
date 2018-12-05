@@ -59825,7 +59825,7 @@ function (_React$Component) {
 
       _client__WEBPACK_IMPORTED_MODULE_2___default()({
         method: 'GET',
-        path: '/acme/api/myprograms/' + this.props.loginuser
+        path: '/api/myprograms/'
       }).done(function (response) {
         console.log(response.entity);
 
@@ -60006,7 +60006,7 @@ function (_React$Component) {
 
       _client__WEBPACK_IMPORTED_MODULE_4___default()({
         method: 'GET',
-        path: '/acme/api/myteam/' + this.props.loginuser
+        path: '/api/myteam/'
       }).done(function (response) {
         console.log(response.entity);
 
@@ -61410,7 +61410,7 @@ function (_React$Component) {
 
       _client__WEBPACK_IMPORTED_MODULE_6___default()({
         method: 'GET',
-        path: '/acme/api/programlist/' + this.props.loginuser
+        path: '/api/programlist/'
       }).done(function (response) {
         console.log("THIS IS THE GET " + response.entity);
 

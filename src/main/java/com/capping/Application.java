@@ -63,6 +63,12 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+	/**@RequestMapping(value = "/")
+	public String home() {
+		System.out.println("HomeController: Passing through...");
+		return "index.html";
+	}*/
+	
     @GetMapping("/api/username")
     public String getUsername(Principal principal) {
         return username(principal);

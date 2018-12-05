@@ -130,7 +130,7 @@
 					</execution>
 					-->
 					<execution>
-						<id>webpack build --watch</id>
+						<id>webpack build</id>
 						<goals>
 							<goal>webpack</goal>
 						</goals>
