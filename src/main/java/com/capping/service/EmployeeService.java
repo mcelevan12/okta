@@ -20,7 +20,7 @@ public class EmployeeService implements IEmployeeService {
 
   @Override
   public Employee save(Employee employee) {
-    return (Employee) repository.save(emplyee);
+    return (Employee) repository.save(employee);
   }
 }
 
