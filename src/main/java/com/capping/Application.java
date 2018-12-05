@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.json.JSONObject;
 
 @RestController
 @EnableOAuth2Sso
@@ -68,11 +69,21 @@ public class Application {
 		System.out.println("HomeController: Passing through...");
 		return "index.html";
 	}*/
-	
+
+    
+    // public JSONObject getusernamejson(Principal principal) {
+    //     return new JSONObject()
+    //         .put("username", principal);
+    // }
+
     @GetMapping("/api/username")
     public String getUsername(Principal principal) {
         return username(principal);
     }
+    // public String getUsername(Principal principal) {
+    //         String principalpass = ((getusernamejson(principal)).toString());
+    //     return new ResponseEntity<String>(principalpass.toString(),HttpStatus.OK);
+    // }
 
     @PostMapping("/api/changeProfile")
     public Employee changeProfile(@RequestBody PersonalInformation personalInformation) {

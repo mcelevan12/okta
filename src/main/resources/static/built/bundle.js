@@ -62034,22 +62034,12 @@ var App =
 function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
-    var _getPrototypeOf2;
-
+  function App(props) {
     var _this;
 
     _classCallCheck(this, App);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      loginstatus: false,
-      loginuser: ''
-    };
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
 
     _this.logoutCallback = function () {
       _this.setState({
@@ -62061,26 +62051,40 @@ function (_React$Component) {
       });
     };
 
+    _this.state = {
+      loginstatus: false,
+      loginuser: ''
+    }; // this.componentDidMount = this.componentDidMount.bind(this);
+
     return _this;
-  }
+  } // //[[${#httpServletRequest.remoteuser}]] 
+  //   componentDidMount () {
+  //     this.setState({loginuser:  '${httpServletRequest.remoteuser}' })
+  //   }
+  // This binding is necessary to make `this` work in the callback
+
 
   _createClass(App, [{
     key: "componentDidMount",
-    // //[[${#httpServletRequest.remoteuser}]] 
-    //   componentDidMount () {
-    //     this.setState({loginuser:  '${httpServletRequest.remoteuser}' })
-    //   }
     value: function componentDidMount() {
-      var _this2 = this;
+      var xhttp = new XMLHttpRequest();
+      var instance = this; // <-- store reference to the `this` value
+      // this.foo = 1;
 
-      client({
-        method: 'GET',
-        path: '/api/username'
-      }).done(function (response) {
-        _this2.setState({
-          loginuser: response.entity
-        });
-      });
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          // Typical action to be performed when the document is ready:
+          instance.setState({
+            loginuser: xhttp.responseText
+          });
+          instance.setState({
+            loginstatus: true
+          });
+        }
+      };
+
+      xhttp.open("GET", "api/username", true);
+      xhttp.send();
     } // LoginCallback = (dataFromChild) => {
     //   this.setState({loginuser: dataFromChild});
     //   this.setState({loginstatus: true});

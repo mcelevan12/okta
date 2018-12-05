@@ -31,23 +31,42 @@ const muiTheme = createMuiTheme({
 
 // tag::app[]
 class App extends React.Component {
-  state = {
-    loginstatus: false,
-    loginuser: '',
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      loginstatus: false,
+      loginuser: '',
+    };
+  
+    
+    // this.componentDidMount = this.componentDidMount.bind(this);
+  }
 
+  
+  
 // //[[${#httpServletRequest.remoteuser}]] 
 //   componentDidMount () {
 
 //     this.setState({loginuser:  '${httpServletRequest.remoteuser}' })
 //   }
 
+ // This binding is necessary to make `this` work in the callback
 
   componentDidMount() {
-		client({method: 'GET', path: '/api/username'}).done(response => {
-			this.setState({loginuser: response.entity});
-    });
-    
+    var xhttp = new XMLHttpRequest();
+    var instance = this; // <-- store reference to the `this` value
+    // this.foo = 1;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           // Typical action to be performed when the document is ready:
+           instance.setState({loginuser: xhttp.responseText});
+           instance.setState({loginstatus: true})
+        }
+    };
+    xhttp.open("GET", "api/username", true);
+    xhttp.send();
+
+
   }
   
   // LoginCallback = (dataFromChild) => {
