@@ -32,8 +32,8 @@ const muiTheme = createMuiTheme({
 // tag::app[]
 class App extends React.Component {
   state = {
-    loginstatus: false,
-    loginuser: '',
+    loginstatus: true,
+    loginuser: 'djsnydes',
   };
 
 // //[[${#httpServletRequest.remoteuser}]] 
@@ -43,36 +43,34 @@ class App extends React.Component {
 //   }
 
 
-  componentDidMount() {
-		client({method: 'GET', path: '/api/username'}).done(response => {
-			this.setState({loginuser: response.entity});
-    });
-    
-  }
+  // componentDidMount() {
+	// 	client({method: 'GET', path: '/api/username'}).done(response => {
+	// 		this.setState({loginuser: response.entity});
+  //  });
+  // }
   
   // LoginCallback = (dataFromChild) => {
   //   this.setState({loginuser: dataFromChild});
   //   this.setState({loginstatus: true});
   // }
 
-  logoutCallback = () => {
-    this.setState({loginstatus: false})
-    this.setState({loginuser: ''})
-  }
+  // logoutCallback = () => {
+  //   this.setState({loginstatus: false})
+  //   this.setState({loginuser: ''})
+  // }
 
 	render() {
 		return (
       <Card style={{width: "100%", height: "100%",}}>
         <CardContent>
-          <MuiThemeProvider theme={muiTheme}>
-{/*           
+          <MuiThemeProvider theme={muiTheme}>          
           <div> {this.state.loginUser} </div>
           {this.state.loggedout == true && 
             <Typography style={{aligncontent: "center"}}> Logged out. Thank you for using Acme.  </Typography>
-          } */}
-          {/* {this.state.loginstatus == false && 
+          } 
+          {this.state.loginstatus == false && 
             <LoginPage style={{aligncontent: "center"}} LoginCallback={this.LoginCallback} />
-          } */}
+          }
           {this.state.loginstatus == true &&
             <PermanentDrawerLeft loginuser={this.state.loginuser} logout={this.logoutCallback}/>
           }

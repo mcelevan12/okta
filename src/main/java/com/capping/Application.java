@@ -23,7 +23,6 @@ import com.capping.service.IValidProgramService;
 import com.capping.service.IActiveRequestService;
 import com.capping.service.IManageService;
 import com.capping.bean.ActiveRequest;
-import java.security.Principal;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -69,8 +68,8 @@ public class Application {
     }
 
     @PostMapping("/api/changeProfile")
-    public Employee changeProfile(@RequestBody PersonalInformation personalInformation) {
-        Employee old = (Employee) employeeService.find(personalInformation.username);
+    public Employee changeProfile(Principal principal, @RequestBody PersonalInformation personalInformation) {
+        Employee old = (Employee) employeeService.find(username(principal));
         old.updateValues(personalInformation);
         return employeeService.save(old);
     }
@@ -163,3 +162,10 @@ public class Application {
     }
 }
 
+=======
+	/*
+    public String username(Principal principal) {
+        return principal.getName().split("@")[0];
+    }*/
+}
+>>>>>>> master:src/main/java/com/capping/Application.java

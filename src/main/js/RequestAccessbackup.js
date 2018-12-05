@@ -27,7 +27,7 @@ class RequestAccess extends React.Component {
    }
 
     get(){
-        client({method: 'GET', path:'/acme/api/programlist/' + this.props.loginuser}).done(response => {
+        client({method: 'GET', path:'/api/programlist/' + this.props.loginuser}).done(response => {
     console.log(response.entity)
     this.setState({programlist: response.entity
     });

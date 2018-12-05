@@ -39,7 +39,7 @@ function EmployeeListItem(props) {
     return (
 
             <ListItem dense button onClick={callbackWithProps}>
-              <Avatar alt={props.username} src={"/acme/images/" + props.username + ".png"}  imgProps={{ onError: (e) => { e.target.src = "./images/DEFAULT.png"}}}/>
+              <Avatar alt={props.username} src={"/images/" + props.username + ".png"}  imgProps={{ onError: (e) => { e.target.src = "./images/DEFAULT.png"}}}/>
               <ListItemText primary={props.firstname + " " + props.lastname + ", Username: " + props.username} secondary={props.jobtitle + " at the " + 
               props.city + " office in " + props.country}/>
             </ListItem>

@@ -42,7 +42,7 @@ searchfunction = () => {
   // var data = JSON.stringify({"SearchTerms": {"lastName": this.state.lastname, "firstName": this.state.firstname, "city": this.state.city, "username": this.state.username}});
   // console.log(data);
   // searchPOST.send(data);
-  client({method: 'GET', path: '/acme/api/searchemployee/' + combinedterms}).done(response => {
+  client({method: 'GET', path: '/api/searchemployee/' + combinedterms}).done(response => {
         console.log(response.entity);
     		this.setState({employeelist: response.entity});
     	});
