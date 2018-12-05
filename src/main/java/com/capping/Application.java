@@ -70,9 +70,9 @@ public class Application {
 
     @PostMapping("/api/changeProfile")
     public Employee changeProfile(@RequestBody PersonalInformation personalInformation) {
-        Employee old = (Employee)employeeService.find(employee.username);
+        Employee old = (Employee) employeeService.find(personalInformation.username);
         old.updateValues(personalInformation);
-        return employeeService.save(employee);
+        return employeeService.save(old);
     }
 
     @GetMapping("/api/employee/{username}")
