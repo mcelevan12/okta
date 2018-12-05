@@ -65,12 +65,12 @@ public class Application {
 
     @GetMapping("/api/username")
     public String getUsername(Principal principal) {
-        return principal.getName();
+        return username(principal);
     }
 
     @PostMapping("/api/changeProfile")
-    public Employee changeProfile(@RequestBody PersonalInformation personalInformation) {
-        Employee old = (Employee) employeeService.find(personalInformation.username);
+    public Employee changeProfile(Principal principal, @RequestBody PersonalInformation personalInformation) {
+        Employee old = (Employee) employeeService.find(username(principal));
         old.updateValues(personalInformation);
         return employeeService.save(old);
     }
@@ -81,10 +81,12 @@ public class Application {
         return new ResponseEntity<String>(personalInformation.toString(),HttpStatus.OK);
     }
 
-    @GetMapping("/api/myteam/")
+    @GetMapping("/api/myteam")
     public @ResponseBody ResponseEntity<String> getMyTeam(Principal principal) {
-        Manage manager = (Manage) manageService.findByManagedUsername(principal.getName());
-        List<Manage> managed = manageService.findByManagerUsername(manager.managerUsername());
+        Manage manager = (Manage) manageService.findByManagedUsername(username(principal));
+        List<Manage> managed;
+        if(manager == null) { managed = manageService.findByManagerUsername(username(principal)); }
+        else { managed = manageService.findByManagerUsername(manager.managerUsername()); }
         List<PersonalInformation> teammates = new LinkedList();
         teammates.add((PersonalInformation) personalInformationService.find(manager.managerUsername()));
         for(String managedUsername : managed.stream().map(manage -> manage.managedUsername()).collect(Collectors.toList())) {
@@ -93,7 +95,7 @@ public class Application {
         return new ResponseEntity<String>(teammates.toString(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/advancedsearchemployee/")
+    @GetMapping("/api/advancedsearchemployee")
     public @ResponseBody ResponseEntity<String> getAdvancedSearchedEmployees(@RequestParam(value="city") String city,
             @RequestParam(value="username") String username, @RequestParam(value="firstName") String firstName,
             @RequestParam(value="lastName") String lastName, @RequestParam(value="jobTitle") String jobTitle,
@@ -130,7 +132,7 @@ public class Application {
         return new ResponseEntity<String>(employeeProgramList.toString(),HttpStatus.OK);
     }
 
-    @GetMapping("/api/programlist/")
+    @GetMapping("/api/programlist")
     public @ResponseBody ResponseEntity<String> getValidProgramList(Principal principal) {
         String username = username(principal);
         List<ValidProgram> validPrograms = (List<ValidProgram>) validProgramService.findAll();
@@ -161,5 +163,5 @@ public class Application {
     public String username(Principal principal) {
         return principal.getName().split("@")[0];
     }
-}
 
+}
