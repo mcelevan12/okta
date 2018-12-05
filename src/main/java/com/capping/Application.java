@@ -121,12 +121,12 @@ public class Application {
         List<PersonalInformation> validPersonalInformationList = new LinkedList<>();
         boolean flag = true;
         for(PersonalInformation p : personalInformationList) {
-            if(!p.username.equals("") && !p.username.equals(username)) { flag = false; }
-            if(!p.city.equals("") && !p.city.equals(city)) { flag = false; }
-            if(!p.firstName.equals("") && !p.firstName.equals(firstName)) { flag = false; }
-            if(!p.lastName.equals("") && !p.lastName.equals(lastName)) { flag = false; }
-            if(!p.jobTitle.equals("") && !p.jobTitle.contains(jobTitle)) { flag = false; }
-            if(!p.workPhoneNumber.equals("") && !p.workPhoneNumber.equals(workPhoneNumber)) { flag = false; }
+            if(!username.equals("") && !p.username.equals(username)) { flag = false; }
+            if(!city.equals("") && !p.city.equals(city)) { flag = false; }
+            if(!firstName.equals("") && !p.firstName.equals(firstName)) { flag = false; }
+            if(!lastName.equals("") && !p.lastName.equals(lastName)) { flag = false; }
+            if(!jobTitle.equals("") && !p.jobTitle.contains(jobTitle)) { flag = false; }
+            if(!workPhoneNumber.equals("") && !p.workPhoneNumber.equals(workPhoneNumber)) { flag = false; }
             if(flag) {validPersonalInformationList.add(p); }
        }
        return new ResponseEntity<String>(validPersonalInformationList.toString(), HttpStatus.OK);
