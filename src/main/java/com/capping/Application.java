@@ -71,8 +71,8 @@ public class Application {
 
     @GetMapping("/api/changeProfile")
     public Employee changeProfile(Principal principal, @RequestParam(value="workPhoneNumber") String workPhoneNumber,
-            @RequestParam(value="biography") String biography, @RequestParam(value="firstName") firstName,
-            @RequestParam(value="lastName") lastName) {
+            @RequestParam(value="biography") String biography, @RequestParam(value="firstName") String firstName,
+            @RequestParam(value="lastName") String lastName) {
         Employee old = (Employee) employeeService.find(username(principal));
         old.firstName = firstName;
         old.lastName = lastName;
@@ -161,11 +161,12 @@ public class Application {
     }
 
     @GetMapping("/api/requestaccess/")
-    public ActiveRequest newAccessRequest(@RequestParam(value="username") String username, @RequestParam(value="programId") int programId
+    public ActiveRequest newAccessRequest(@RequestParam(value="username") String username, @RequestParam(value="programId") int programId,
             @RequestParam(value="accessLevel") String accessLevel, @RequestParam(value="status") String status,
             @RequestParam(value="modifiedBy") String modifiedBy, @RequestParam(value="comment") String comment) {
         return activeRequestService.save(new ActiveRequest(new ActiveRequest.ActiveRequestId(username, programId, accessLevel, status, modifiedBy), new Date(),
             comment));
+    }
 
     @PostMapping("/api/requestaccess/")
     public ActiveRequest newAccessRequest(@RequestBody ActiveRequest activeRequest) {
