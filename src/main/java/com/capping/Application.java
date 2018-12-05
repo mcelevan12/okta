@@ -23,6 +23,7 @@ import com.capping.service.IValidProgramService;
 import com.capping.service.IActiveRequestService;
 import com.capping.service.IManageService;
 import com.capping.bean.ActiveRequest;
+import java.security.Principal;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -39,7 +40,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
-import java.security.Principal;
 
 @RestController
 @EnableOAuth2Sso
@@ -162,7 +162,4 @@ public class Application {
         return principal.getName().split("@")[0];
     }
 
-    public String username(Principal principal) {
-        return principal.getName().split("@")[0];
-    }
 }
