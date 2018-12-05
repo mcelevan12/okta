@@ -160,12 +160,8 @@ public class Application {
     public String username(Principal principal) {
         return principal.getName().split("@")[0];
     }
-}
 
-=======
-	/*
     public String username(Principal principal) {
         return principal.getName().split("@")[0];
-    }*/
+    }
 }
->>>>>>> master:src/main/java/com/capping/Application.java
