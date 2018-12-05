@@ -136,11 +136,6 @@ public class Application {
         return new ResponseEntity<String>(employeeProgramList.toString(),HttpStatus.OK);
     }
 
-/*    @GetMapping("/api2/myprograms")
-    public @ResponseBody ResponseEntity<String> api2EP(Principal p) {
-        return getEmployeePrograms(p);
-    }*/
-
     @GetMapping("/api/programlist")
     public @ResponseBody ResponseEntity<String> getValidProgramList(Principal principal) {
         String username = username(principal);
