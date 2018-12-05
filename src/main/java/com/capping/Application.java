@@ -42,7 +42,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
 @RestController
-//@EnableOAuth2Sso
+@EnableOAuth2Sso
 @SpringBootApplication
 public class Application {
 
