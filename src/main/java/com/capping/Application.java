@@ -122,13 +122,13 @@ public class Application {
         List<PersonalInformation> validPersonalInformationList = new LinkedList<>();
         boolean flag = true;
         for(PersonalInformation p : personalInformationList) {
-            flag = true;
-            if(!username.equals("") && !p.username.equals(username)) { flag = false; }
-            if(!city.equals("") && !p.city.equals(city)) { flag = false; }
-            if(!firstName.equals("") && !p.firstName.equals(firstName)) { flag = false; }
-            if(!lastName.equals("") && !p.lastName.equals(lastName)) { flag = false; }
-            if(!jobTitle.equals("") && !p.jobTitle.contains(jobTitle)) { flag = false; }
-            if(!workPhoneNumber.equals("") && !p.workPhoneNumber.equals(workPhoneNumber)) { flag = false; }
+            flag = false;
+            if(!username.equals("") && p.username.toUpperCase().equals(username.toUpperCase())) { flag = true; }
+            if(!city.equals("") && p.city.toUpperCase().equals(city.toUpperCase())) { flag = true; }
+            if(!firstName.equals("") && p.firstName.toUpperCase().equals(firstName.toUpperCase())) { flag = true; }
+            if(!lastName.equals("") && p.lastName.toUpperCase().equals(lastName.toUpperCase())) { flag = true; }
+            if(!jobTitle.equals("") && p.jobTitle.toUpperCase().contains(jobTitle.toUpperCase())) { flag = true; }
+            if(!workPhoneNumber.equals("") && p.workPhoneNumber.equals(workPhoneNumber)) { flag = true; }
             if(flag) {validPersonalInformationList.add(p); }
        }
        return new ResponseEntity<String>(validPersonalInformationList.toString(), HttpStatus.OK);
