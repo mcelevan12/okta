@@ -41,10 +41,10 @@ public class PersonalInformation {
 
   public boolean containsParameters(String[] parameters) {
     for(String parameter : parameters) {
-      if(username.equals(parameter)) {return true;}
-      if(jobTitle.contains(parameter)) {return true;}
-      if(firstName.equals(parameter)) {return true;}
-      if(lastName.equals(parameter)) {return true;}
+      if(username.toUpperCase().equals(parameter.toUpperCase())) {return true;}
+      if(jobTitle.toUpperCase().contains(parameter.toUpperCase())) {return true;}
+      if(firstName.toUpperCase().equals(parameter.toUpperCase())) {return true;}
+      if(lastName.toUpperCase().equals(parameter.toUpperCase())) {return true;}
       if(workPhoneNumber.equals(parameter)) {return true;}
     }
     return false;
@@ -72,7 +72,7 @@ public class PersonalInformation {
     return this.json().toString();
   }
 
-  public JSONObject json() { 
+  public JSONObject json() {
 	return new JSONObject().put("PersonalInformation", new JSONObject()
         .put("username", username)
         .put("jobTitle", jobTitle)
