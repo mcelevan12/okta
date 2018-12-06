@@ -137,7 +137,7 @@ public class Application {
     @GetMapping("/api/searchemployee/{pSP}")
     public @ResponseBody ResponseEntity<String> getSearchedEmployees(@PathVariable("pSP") String plusSeperatedParameters) {
         List<PersonalInformation> personalInformationList = (List<PersonalInformation>) personalInformationService.findAll();
-        String[] searchParameters = plusSeperatedParameters.split("\+");
+        String[] searchParameters = plusSeperatedParameters.split("\\+");
         return new ResponseEntity<String>(personalInformationList.stream()
                         .filter(info -> info.containsParameters(searchParameters))
                         .collect(Collectors.toList()).toString(),
