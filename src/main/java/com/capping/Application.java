@@ -123,12 +123,12 @@ public class Application {
         boolean flag = true;
         for(PersonalInformation p : personalInformationList) {
             flag = false;
-            if(!username.equals("") && p.username.toUpperCase().equals(username.toUpperCase())) { flag = true; }
-            if(!city.equals("") && p.city.toUpperCase().equals(city.toUpperCase())) { flag = true; }
-            if(!firstName.equals("") && p.firstName.toUpperCase().equals(firstName.toUpperCase())) { flag = true; }
-            if(!lastName.equals("") && p.lastName.toUpperCase().equals(lastName.toUpperCase())) { flag = true; }
-            if(!jobTitle.equals("") && p.jobTitle.toUpperCase().contains(jobTitle.toUpperCase())) { flag = true; }
-            if(!workPhoneNumber.equals("") && p.workPhoneNumber.equals(workPhoneNumber)) { flag = true; }
+            if(p.username.toUpperCase().equals(username.toUpperCase())) { flag = true; }
+            if(p.city.toUpperCase().equals(city.toUpperCase())) { flag = true; }
+            if(p.firstName.toUpperCase().equals(firstName.toUpperCase())) { flag = true; }
+            if(p.lastName.toUpperCase().equals(lastName.toUpperCase())) { flag = true; }
+            if(p.jobTitle.toUpperCase().contains(jobTitle.toUpperCase())) { flag = true; }
+            if(p.workPhoneNumber.equals(workPhoneNumber)) { flag = true; }
             if(flag) {validPersonalInformationList.add(p); }
        }
        return new ResponseEntity<String>(validPersonalInformationList.toString(), HttpStatus.OK);
